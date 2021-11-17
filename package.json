@@ -1,0 +1,14 @@
+{
+  "name": "milestones",
+  "version": "0.0.1",
+  "description": "Create time-based milestones",
+  "main": "index.js",
+  "repository": "git@gitlab.tangramflex.tech:weisjohn/milestones.git",
+  "author": "john.weis@tangramflex.com",
+  "license": "UNLICENSED",
+  "private": false,
+  "type": "module",
+  "dependencies": {
+    "@gitbeaker/node": "^34.6.0"
+  }
+}
