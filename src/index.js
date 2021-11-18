@@ -1,5 +1,5 @@
 import { Gitlab } from "@gitbeaker/node";
-import { Command, Option } from 'commander/esm.mjs';
+import { Command, Option } from 'commander';
 import dayjs from 'dayjs';
 import lo from 'lodash';
 
@@ -69,19 +69,22 @@ async function getMilestonesToCreate(desired) {
   return lo.differenceBy(desired, groupMilestones, "start_date");
 }
 
-var create = await getMilestonesToCreate(generateMilestones())
-console.log('\nMilestones to be created:');
-console.table(create);
+async function doStuff() {
+  var create = await getMilestonesToCreate(generateMilestones())
+  console.log('\nMilestones to be created:');
+  console.table(create);
 
-if (!options.yes) {
-  console.log('\nShould we proceed?');
-  console.log('To create the milestones, set `--yes`');
-  process.exit(1);
-}
+  if (!options.yes) {
+    console.log('\nShould we proceed?');
+    console.log('To create the milestones, set `--yes`');
+    process.exit(1);
+  }
 
-// create milestones
-for (const milestone of create) {
-  await delay(1);
-  const res = await api.GroupMilestones.create(group, milestone.title, milestone);
-  console.log(`Milestone created: ${res.web_url}`);
+  // create milestones
+  for (const milestone of create) {
+    await delay(1);
+    const res = await api.GroupMilestones.create(group, milestone.title, milestone);
+    console.log(`Milestone created: ${res.web_url}`);
+  }
 }
+doStuff();
