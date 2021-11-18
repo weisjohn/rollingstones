@@ -2,6 +2,8 @@ import { Gitlab } from "@gitbeaker/node";
 import dayjs from 'dayjs';
 import lo from 'lodash';
 
+const ISO8601 = "YYYY-MM-DD";
+
 // helper for waiting
 function delay(seconds) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -22,10 +24,9 @@ function generateMilestones() {
   return Array(sprints_per_year).fill().map((v, i) => {
     const milestone_start = dayjs(start).add(i * sprint_length_weeks, "weeks");
     return {
-      id: group_id,
-      title: `22-${(i+1).toString().padStart(2, '0')}`,
-      start_date: milestone_start.format("YYYY-MM-DD"),
-      due_date: milestone_start.add(sprint_days, "days").format("YYYY-MM-DD"),
+      title: `${dayjs(start).format('YY')}-${(i+1).toString().padStart(2, '0')}`,
+      start_date: milestone_start.format(ISO8601),
+      due_date: milestone_start.add(sprint_days, "days").format(ISO8601),
     };
   });
 }
