@@ -12,12 +12,6 @@ const api = new Gitlab({
   token: process.env.GITLAB_TOKEN,
 });
 
-// the https://gitlab.tangramflex.tech/pro
-// const group_id = 118;
-
-// https://gitlab.tangramflex.tech/sandbox/milestone-test
-const group_id = 444;
-
 // generates the milestones periods w/ an exclusive date pattern
 function generateMilestones() {
   const start = '2022-01-05';
