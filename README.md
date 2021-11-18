@@ -88,10 +88,10 @@ After confirming the milestones are correct, re-run the command with `--yes` to 
 `rollingstones` will display a link to the milestones created, such as:
 
 ```console
-Milestone created: https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/16
-Milestone created: https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/17
-Milestone created: https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/18
-Milestone created: https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/19
+Milestone created: https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/16
+Milestone created: https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/17
+Milestone created: https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/18
+Milestone created: https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/19
 ```
 
 ## recovery
@@ -106,15 +106,15 @@ $ rollingstones -g 444 --start 2022-01-05 --end 2022-08-03 -i 3
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 Milestones in series:
-┌─────────┬─────────┬──────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
-│ (index) │  title  │  start_date  │   due_date   │                                     web_url                            │
-├─────────┼─────────┼──────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
-│    0    │ '22-01' │ '2022-01-05' │ '2022-01-25' │ 'https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/10' │
-│    1    │ '22-02' │ '2022-01-26' │ '2022-02-15' │ 'https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/11' │
-│    2    │ '22-03' │ '2022-02-16' │ '2022-03-08' │ 'https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/12' │
-│    3    │ '22-04' │ '2022-03-09' │ '2022-03-29' │ 'https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/13' │
-│    4    │ '22-05' │ '2022-03-30' │ '2022-04-19' │ 'https://mygitlab.teset/groups/sandbox/milestone-test/-/milestones/14' │
-└─────────┴─────────┴──────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+┌─────────┬─────────┬──────────────┬──────────────┬───────────────────────────────────────────────────────────────────────┐
+│ (index) │  title  │  start_date  │   due_date   │                                     web_url                           │
+├─────────┼─────────┼──────────────┼──────────────┼───────────────────────────────────────────────────────────────────────┤
+│    0    │ '22-01' │ '2022-01-05' │ '2022-01-25' │ 'https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/10' │
+│    1    │ '22-02' │ '2022-01-26' │ '2022-02-15' │ 'https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/11' │
+│    2    │ '22-03' │ '2022-02-16' │ '2022-03-08' │ 'https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/12' │
+│    3    │ '22-04' │ '2022-03-09' │ '2022-03-29' │ 'https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/13' │
+│    4    │ '22-05' │ '2022-03-30' │ '2022-04-19' │ 'https://mygitlab.test/groups/sandbox/milestone-test/-/milestones/14' │
+└─────────┴─────────┴──────────────┴──────────────┴───────────────────────────────────────────────────────────────────────┘
 
 Milestones to be created:
 ┌─────────┬─────────┬──────────────┬──────────────┐
