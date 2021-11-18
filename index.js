@@ -33,8 +33,15 @@ function generateMilestones() {
 // only create milestones if they don't already exist, use the title property
 async function getMilestonesToCreate(desired) {
   // get all group milestones for this group
-  const groupMilestones = await api.GroupMilestones.all(group_id);
-  return lo.differenceBy(desired, groupMilestones, "title");
+  const groupMilestones = await api.GroupMilestones.all(group);
+
+  // show already existing milestones in this series
+  let existing = lo.intersectionBy(groupMilestones, desired, "start_date");
+  if (existing.length) {
+    console.log('\nMilestones in series:');
+    console.table(lo.sortBy(existing, 'start_date'), ['title', 'start_date', 'due_date', 'web_url']);
+  }
+  return lo.differenceBy(desired, groupMilestones, "start_date");
 }
 
 var create = await getMilestonesToCreate(generateMilestones())
