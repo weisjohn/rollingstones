@@ -9,6 +9,7 @@
   "private": false,
   "type": "module",
   "dependencies": {
-    "@gitbeaker/node": "^34.6.0"
+    "@gitbeaker/node": "^34.6.0",
+    "dayjs": "^1.10.7"
   }
 }
