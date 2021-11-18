@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Gitlab } from "@gitbeaker/node";
 import { Command, Option } from 'commander';
 import dayjs from 'dayjs';
