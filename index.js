@@ -41,4 +41,12 @@ async function getMilestonesToCreate(desired) {
 var create = await getMilestonesToCreate(generateMilestones())
 console.log('\nMilestones to be created:');
 console.table(create, ['title', 'start_date', 'due_date']);
-console.log('Should we proceed?');
+
+const proceed = process.argv.includes('--yes');
+if (!proceed) {
+  console.log('Should we proceed?')
+  console.log('To create the milestones, set `--yes`');
+  process.exit(1);
+} else {
+  // TODO: create milestones
+}
