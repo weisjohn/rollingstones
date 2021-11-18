@@ -1,4 +1,5 @@
 import { Gitlab } from "@gitbeaker/node";
+import { Command, Option } from 'commander/esm.mjs';
 import dayjs from 'dayjs';
 import lo from 'lodash';
 
@@ -8,6 +9,26 @@ const ISO8601 = "YYYY-MM-DD";
 function delay(seconds) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
+
+const program = new Command();
+program
+  .requiredOption('-g, --group <id>', 'gitlab group id')
+  .addOption(new Option('-s, --start <date>', 'start date - YYYY-MM-DD').default(dayjs().format(ISO8601)))
+  .addOption(new Option('-e, --end <date>', 'end date - YYYY-MM-DD'))
+  .addOption(new Option('-i, --interval <weeks>', 'length of sprint in weeks').default(3))
+  .option('-d, --debug', 'extra debugging info')
+  .option('-y, --yes', 'create the milestones')
+  .version('0.0.1', '-v, --version', 'output current version')
+  .addHelpText('after', '\n$GITLAB_HOST and $GITLAB_TOKEN must be set on the environment\n')
+  .parse(process.argv);
+const options = program.opts();
+
+// default end is a year later
+if (!options.end) {
+  options.end = dayjs(options.start).add(1, 'year').format(ISO8601);
+}
+if (options.debug) { console.log(options); }
+const { group, start, end, interval } = options;
 
 const api = new Gitlab({
   host: process.env.GITLAB_HOST,
@@ -50,12 +71,10 @@ async function getMilestonesToCreate(desired) {
 
 var create = await getMilestonesToCreate(generateMilestones())
 console.log('\nMilestones to be created:');
-console.table(create, ['title', 'start_date', 'due_date']);
-console.log();
+console.table(create);
 
-const proceed = process.argv.includes('--yes');
-if (!proceed) {
-  console.log('Should we proceed?')
+if (!options.yes) {
+  console.log('\nShould we proceed?');
   console.log('To create the milestones, set `--yes`');
   process.exit(1);
 }
@@ -63,7 +82,6 @@ if (!proceed) {
 // create milestones
 for (const milestone of create) {
   await delay(1);
-  const { id, title } = milestone;
-  const res = await api.GroupMilestones.create(id, title, milestone);
+  const res = await api.GroupMilestones.create(group, milestone.title, milestone);
   console.log(`Milestone created: ${res.web_url}`);
 }
