@@ -18,7 +18,7 @@ program
   .requiredOption('-g, --group <id>', 'gitlab group id')
   .addOption(new Option('-s, --start <date>', 'start date - YYYY-MM-DD').default(dayjs().format(ISO8601)))
   .addOption(new Option('-e, --end <date>', 'end date - YYYY-MM-DD'))
-  .addOption(new Option('-i, --interval <weeks>', 'length of sprint in weeks').default(3))
+  .addOption(new Option('-i, --interval <weeks>', 'length of sprint in weeks').default(2))
   .option('-d, --debug', 'extra debugging info')
   .option('-y, --yes', 'create the milestones')
   .version('0.0.4', '-v, --version', 'output current version')
@@ -51,7 +51,7 @@ function generateMilestones() {
   return Array(sprints).fill().map((v, i) => {
     const milestone_start = dayjs(start).add(i * interval, "weeks");
     return {
-      title: `${dayjs(start).format('YY')}-${(i+1).toString().padStart(2, '0')}`,
+      title: `${dayjs(milestone_start).format('YY')}-${(i+1).toString().padStart(2, '0')}`,
       start_date: milestone_start.format(ISO8601),
       due_date: milestone_start.add(sprint_days, "days").format(ISO8601),
     };
