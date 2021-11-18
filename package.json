@@ -1,6 +1,6 @@
 {
   "name": "rollingstones",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Create cascading, time-based milestones in Gitlab.",
   "main": "index.js",
   "repository": "git@gitlab.tangramflex.tech:weisjohn/rollingstones.git",
@@ -17,6 +17,8 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/runtime": "^7.16.3",
     "@gitbeaker/node": "^34.6.0",
     "commander": "^8.3.0",
     "dayjs": "^1.10.7",
@@ -25,8 +27,6 @@
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
-    "@babel/plugin-transform-runtime": "^7.16.4",
-    "@babel/preset-env": "^7.16.4",
-    "@babel/runtime": "^7.16.3"
+    "@babel/preset-env": "^7.16.4"
   }
 }
