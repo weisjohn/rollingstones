@@ -14,6 +14,7 @@ function delay(seconds) {
 
 const program = new Command();
 program
+  .name('rollingstones')
   .requiredOption('-g, --group <id>', 'gitlab group id')
   .addOption(new Option('-s, --start <date>', 'start date - YYYY-MM-DD').default(dayjs().format(ISO8601)))
   .addOption(new Option('-e, --end <date>', 'end date - YYYY-MM-DD'))
