@@ -21,7 +21,7 @@ program
   .addOption(new Option('-i, --interval <weeks>', 'length of sprint in weeks').default(2))
   .option('-d, --debug', 'extra debugging info')
   .option('-y, --yes', 'create the milestones')
-  .version('0.0.7', '-v, --version', 'output current version')
+  .version('0.0.8', '-v, --version', 'output current version')
   .addHelpText('after', '\n$GITLAB_HOST and $GITLAB_TOKEN must be set on the environment\n')
   .parse(process.argv);
 const options = program.opts();
