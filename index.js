@@ -16,13 +16,16 @@ const api = new Gitlab({
 
 // generates the milestones periods w/ an exclusive date pattern
 function generateMilestones() {
-  const start = '2022-01-05';
-  const sprint_length_weeks = 3;
-  const sprint_days = (sprint_length_weeks * 7) - 1;
-  const sprints_per_year = Math.floor(52 / sprint_length_weeks);
 
-  return Array(sprints_per_year).fill().map((v, i) => {
-    const milestone_start = dayjs(start).add(i * sprint_length_weeks, "weeks");
+  // number of sprints is end minus start in weeks integer divided by interval
+  const sprints = Math.floor(dayjs(end).diff(start, 'week') / interval);
+  if (options.debug) { console.log('sprints in series', sprints, '\n'); }
+
+  // sprint days is the interval weeks to days less one (exclusive)
+  const sprint_days = (interval * 7) - 1;
+
+  return Array(sprints).fill().map((v, i) => {
+    const milestone_start = dayjs(start).add(i * interval, "weeks");
     return {
       title: `${dayjs(start).format('YY')}-${(i+1).toString().padStart(2, '0')}`,
       start_date: milestone_start.format(ISO8601),
