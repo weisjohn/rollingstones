@@ -2,6 +2,11 @@ import { Gitlab } from "@gitbeaker/node";
 import dayjs from 'dayjs';
 import lo from 'lodash';
 
+// helper for waiting
+function delay(seconds) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
 const api = new Gitlab({
   host: process.env.GITLAB_HOST,
   token: process.env.GITLAB_TOKEN,
