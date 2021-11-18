@@ -1,6 +1,6 @@
 {
   "name": "rollingstones",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Create cascading, time-based milestones in Gitlab.",
   "main": "index.js",
   "repository": "git@gitlab.tangramflex.tech:weisjohn/rollingstones.git",
