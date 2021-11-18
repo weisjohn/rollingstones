@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-":" //# comment; exec /usr/bin/env node --input-type=module - "$@" < "$0"
-
 import { Gitlab } from "@gitbeaker/node";
 import { Command, Option } from 'commander/esm.mjs';
 import dayjs from 'dayjs';
