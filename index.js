@@ -46,12 +46,19 @@ async function getMilestonesToCreate(desired) {
 var create = await getMilestonesToCreate(generateMilestones())
 console.log('\nMilestones to be created:');
 console.table(create, ['title', 'start_date', 'due_date']);
+console.log();
 
 const proceed = process.argv.includes('--yes');
 if (!proceed) {
   console.log('Should we proceed?')
   console.log('To create the milestones, set `--yes`');
   process.exit(1);
-} else {
-  // TODO: create milestones
+}
+
+// create milestones
+for (const milestone of create) {
+  await delay(1);
+  const { id, title } = milestone;
+  const res = await api.GroupMilestones.create(id, title, milestone);
+  console.log(`Milestone created: ${res.web_url}`);
 }
