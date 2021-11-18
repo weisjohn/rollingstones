@@ -1,13 +1,18 @@
 {
-  "name": "milestones",
-  "version": "0.0.1",
-  "description": "Create time-based milestones",
+  "name": "rollingstones",
+  "version": "0.0.2",
+  "description": "Create time-based, group-level milestones in Gitlab.",
   "main": "index.js",
-  "repository": "git@gitlab.tangramflex.tech:weisjohn/milestones.git",
-  "author": "john.weis@tangramflex.com",
+  "repository": "git@gitlab.tangramflex.tech:weisjohn/rollingstones.git",
+  "author": "weis.john@gmail.com",
   "license": "UNLICENSED",
   "private": false,
   "type": "module",
+  "bin": "index.js",
+  "keywords": [
+    "gitlab",
+    "milestones"
+  ],
   "dependencies": {
     "@gitbeaker/node": "^34.6.0",
     "commander": "^8.3.0",

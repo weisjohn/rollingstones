@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+":" //# comment; exec /usr/bin/env node --input-type=module - "$@" < "$0"
+
 import { Gitlab } from "@gitbeaker/node";
 import { Command, Option } from 'commander/esm.mjs';
 import dayjs from 'dayjs';
@@ -18,7 +21,7 @@ program
   .addOption(new Option('-i, --interval <weeks>', 'length of sprint in weeks').default(3))
   .option('-d, --debug', 'extra debugging info')
   .option('-y, --yes', 'create the milestones')
-  .version('0.0.1', '-v, --version', 'output current version')
+  .version('0.0.2', '-v, --version', 'output current version')
   .addHelpText('after', '\n$GITLAB_HOST and $GITLAB_TOKEN must be set on the environment\n')
   .parse(process.argv);
 const options = program.opts();
