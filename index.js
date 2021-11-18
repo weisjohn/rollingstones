@@ -1,5 +1,6 @@
 import { Gitlab } from "@gitbeaker/node";
 import dayjs from 'dayjs';
+import lo from 'lodash';
 
 const api = new Gitlab({
   host: process.env.GITLAB_HOST,
@@ -11,11 +12,6 @@ const api = new Gitlab({
 
 // https://gitlab.tangramflex.tech/sandbox/milestone-test
 const group_id = 444;
-
-// get all group milestones for this group
-let groupMilestones = await api.GroupMilestones.all(group_id);
-console.log(groupMilestones);
-console.log("groupMilestones.length", groupMilestones.length);
 
 // generates the milestones periods w/ an exclusive date pattern
 function generateMilestones() {
@@ -34,3 +30,15 @@ function generateMilestones() {
     };
   });
 }
+
+// only create milestones if they don't already exist, use the title property
+async function getMilestonesToCreate(desired) {
+  // get all group milestones for this group
+  const groupMilestones = await api.GroupMilestones.all(group_id);
+  return lo.differenceBy(desired, groupMilestones, "title");
+}
+
+var create = await getMilestonesToCreate(generateMilestones())
+console.log('\nMilestones to be created:');
+console.table(create, ['title', 'start_date', 'due_date']);
+console.log('Should we proceed?');
