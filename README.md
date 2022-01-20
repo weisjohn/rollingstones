@@ -4,6 +4,15 @@ Create cascading, time-based milestones in Gitlab.
 
 ![](milestones.png)
 
+## docker
+
+```bash
+$ docker run -it --rm \
+  -e GITLAB_HOST \
+  -e GITLAB_TOKEN \
+  weisjohn/rollingstones -g 444 # ... see below
+```
+
 ## install
 
 ```console
